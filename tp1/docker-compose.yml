@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  postgresql:
+    build: .
+    container_name: postgresql
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: adminadmin
+    volumes:
+      - postgres_data_school_tp1:/var/lib/postgresql/data
+
+  my-pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: my-pgadmin
+    ports:
+      - "82:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: test1234
+
+volumes:
+  postgres_data_school_tp1:
